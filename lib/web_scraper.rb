@@ -9,6 +9,7 @@ module TagCrawler
 		CLOSING_TAG = /<\/(\w+)>/
 		SELF_CLOSING_TAG = /\<(\w+)(\/\>|\s*(.*)\/\>)/
 		CAPITAL_LETTER = /[A-Z]/
+		PUNCTUATION = /[^[:alnum:]\s]/
 
 		def initialize(url)
 			begin
@@ -59,6 +60,7 @@ module TagCrawler
 		def find_sequences(nodes)
 			sequences = []
 			nodes.each do |node|
+				node = node.gsub(PUNCTUATION, "")
 				words = node.split(" ")
 				current_sequence = []
 				words.each_with_index do |word, idx|

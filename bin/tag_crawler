@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require 'tag_crawler'
+
+TagCrawler::Main.new.run

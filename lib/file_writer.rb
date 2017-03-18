@@ -9,7 +9,7 @@ module TagCrawler
 			t = Time.now
 			#unique timestamp for output file
 			file = t.strftime("%Y%m%d%H%M%S") + "_" + @filename
-			open("./output/#{file}", 'w') do |f|
+			open("#{file}", 'w') do |f|
 				f.puts "Links"
 				f.puts "......."
 				links.each do |link|
@@ -23,7 +23,7 @@ module TagCrawler
 				sequences.each do |seq|
 					f.puts seq
 				end
-				puts "output/#{file} created"
+				puts "#{file} created"
 			end
 		end
 	end

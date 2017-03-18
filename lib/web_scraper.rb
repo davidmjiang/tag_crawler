@@ -8,6 +8,7 @@ module TagCrawler
 		OPENING_TAG = /\<(\w+)(\>|\s([^\/]+)\>)/
 		CLOSING_TAG = /<\/(\w+)>/
 		SELF_CLOSING_TAG = /\<(\w+)(\/\>|\s*(.*)\/\>)/
+		CAPITAL_LETTER = /[A-Z]/
 
 		def initialize(url)
 			begin
@@ -61,7 +62,7 @@ module TagCrawler
 				words = node.split(" ")
 				current_sequence = []
 				words.each_with_index do |word, idx|
-					if(word[0] == word[0].upcase)
+					if(word.length >= 2 && CAPITAL_LETTER.match(word[0]))
 						current_sequence << word
 					elsif(current_sequence.length >= 2)
 						sequences << current_sequence.join(" ")
